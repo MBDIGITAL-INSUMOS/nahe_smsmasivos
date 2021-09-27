@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="nahe_smsmasivos_sale_order_form_sms_boton">
+        <field name="name">nahe.smsmasivos.sale.order.form.sms.listo.enviado</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="/form/header/button[@name='action_cancel']" position= "after">
+            <button name="action_sendsmslisto" type="object" string="Enviar SMS listo para retirar" states="sale,done"/>
+            <button name="action_sendsmscancelado" type="object" string="Enviar SMS Orden cancelada" attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+        </xpath>
+        </field>
+    </record>
+
+    <record id="nahe_smsmasivos_config_SMSMASIVOS_API_URL" model="ir.config_parameter">
+        <field name="key">nahe_smsmasivos.SMSMASIVOS_API_URL</field>
+        <field name="value">https://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1</field>
+        <!--https://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario=#API_USER&clave=#API_PWD&tos=#NUMERO&texto=#SMS_MESSAGE-->
+    </record>
+    <record id="nahe_smsmasivos_config_SMSMASIVOS_API_USER" model="ir.config_parameter">
+        <field name="key">nahe_smsmasivos.SMSMASIVOS_API_USER</field>
+        <field name="value">Cambiar</field>
+        
+    </record>
+    <record id="nahe_smsmasivos_config_SMSMASIVOS_API_PWD" model="ir.config_parameter">
+        <field name="key">nahe_smsmasivos.SMSMASIVOS_API_PWD</field>
+        <field name="value">Cambiar</field>
+        
+    </record>
+    <record id="nahe_smsmasivos_config_SMSMASIVOS_MESSAGE_LISTO" model="ir.config_parameter">
+        <field name="key">nahe_smsmasivos.SMSMASIVOS_MESSAGE_LISTO</field>
+        <field name="value">Hola, #CLIENTE su pedido #ORDEN esta listo para retirar. Total: #MONTO</field>
+        
+    </record>
+    <record id="nahe_smsmasivos_config_SMSMASIVOS_MESSAGE_CANCELADO" model="ir.config_parameter">
+        <field name="key">nahe_smsmasivos.SMSMASIVOS_MESSAGE_CANCELADO</field>
+        <field name="value">Hola, #CLIENTE su pedido #ORDEN fue cancelado. Contactese con la empresa</field>
+        
+    </record>
+
+  </data>
+</odoo>
