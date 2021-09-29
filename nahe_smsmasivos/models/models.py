@@ -6,10 +6,7 @@ import requests
 
 class NaheSmsMasivosSaleOrder(models.Model):
 	_inherit = 'sale.order'
-
-	sms_listo_enviado = fields.Boolean(string='SMS LISTO ENVIADO')
-	sms_cancelado_enviado = fields.Boolean(string='SMS CANCELADO ENVIADO')
-
+	
 	def action_sendsmslisto(self, default=None):
 		API_URL = self.env['ir.config_parameter'].get_param('nahe_smsmasivos.SMSMASIVOS_API_URL','')
 		API_USER = self.env['ir.config_parameter'].get_param('nahe_smsmasivos.SMSMASIVOS_API_USER','')
